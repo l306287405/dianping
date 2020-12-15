@@ -32,3 +32,17 @@ func (s *Service) OauthToken(r *ReqParams)(err error){
 	fmt.Println(result)
 	return nil
 }
+
+//session换取接口返回值
+//http://open.dianping.com/document/v2?docId=6000341&rootDocId=5000
+type OauthTokenResp struct {
+	AccessToken string `json:"access_token"`
+	ExpiresIn int64 `json:"expires_in"`
+	Scope string `json:"scope"`
+	RefreshToken string `json:"refresh_Token"`
+	RemainRefreshCount int `json:"remain_refresh_count"`
+	Bid string `json:"bid"`
+	TokenType string `json:"token_type"`
+	Code string `json:"code"`
+	Msg *string `json:"msg,omitempty"`
+}
