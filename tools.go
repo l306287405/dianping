@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"net/http"
+	"time"
 )
 
 func PostForm(url string,R *ReqParams)([]byte,error){
@@ -17,6 +18,7 @@ func PostForm(url string,R *ReqParams)([]byte,error){
 }
 
 func RandStr(len int) string {
+	rand.Seed(time.Now().Unix())
 	bytes := make([]byte, len)
 	r := &rand.Rand{}
 	for i := 0; i < len; i++ {

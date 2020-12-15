@@ -5,3 +5,5 @@
 * 自用型应用
 * ~~信息型应用~~ 
 
+### 1: 引入
+    go get -u github.com/l306287405/dianping@master

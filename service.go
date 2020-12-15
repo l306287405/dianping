@@ -51,7 +51,7 @@ func NewService(cfg Config,cache Cache) (*Service,error) {
 	return &Service{cfg,cache},nil
 }
 
-func (s *Service) AuthEncryptState(state string) string{
+func (s *Service) authEncryptState(state string) string{
 	return state+s.AuthFactor
 }
 
