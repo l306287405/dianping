@@ -60,6 +60,10 @@ type ReqParams struct {
 	url.Values
 }
 
+func NewReqParams() *ReqParams{
+	return &ReqParams{url.Values{}}
+}
+
 func (s *ReqParams) SetInt(key string,val int){
 	s.Set(key,strconv.Itoa(val))
 }
