@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	MCH_AUTH_URL = "https://e.dianping.com/dz-open/merchant/auth"
+	MCH_AUTH_URL = "https://e.dianping.com/dz-open/merchant/auth?"
 )
 
 //商家授权ui组件
