@@ -1,20 +1,25 @@
 package dianping
 
 import (
-	"io/ioutil"
+	"encoding/json"
+	"errors"
 	"math/rand"
 	"net/http"
 	"time"
 )
 
-func PostForm(url string,R *ReqParams)([]byte,error){
-	r,err:=http.PostForm(url,R.Values)
-	if err!=nil{
-		return nil,err
+func PostForm(url string, R *ReqParams, resp interface{}) error {
+	r, err := http.PostForm(url, R.Values)
+	if err != nil {
+		return err
 	}
 	defer r.Body.Close()
-	body, err := ioutil.ReadAll(r.Body)
-	return body,err
+
+	if r.StatusCode != http.StatusOK {
+		return errors.New("点评请求http状态非200:" + r.Status)
+	}
+
+	return json.NewDecoder(r.Body).Decode(resp)
 }
 
 func RandStr(len int) string {
@@ -25,4 +30,8 @@ func RandStr(len int) string {
 		bytes[i] = byte(b)
 	}
 	return string(bytes)
+}
+
+func DateTime() string {
+	return time.Now().Format("2006-01-02 15:04:05")
 }
