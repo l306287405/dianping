@@ -37,6 +37,12 @@ type OauthTokenResp struct {
 //http://open.dianping.com/document/v2?docId=6000341&rootDocId=5000
 func (s *Service) OauthTokenByCode(r *ReqParams) (resp *OauthTokenResp, err error) {
 	resp = &OauthTokenResp{}
+
+	err = r.CheckKeys([]string{"auth_code"})
+	if err != nil {
+		return
+	}
+
 	r.AddKeyAndSecret(&s.Config)
 	r.Set("grant_type", "authorization_code")
 	err = PostForm(OAUTH_TOKEN_URL, r, resp)
@@ -50,6 +56,12 @@ func (s *Service) OauthTokenByCode(r *ReqParams) (resp *OauthTokenResp, err erro
 //http://open.dianping.com/document/v2?docId=6000342&rootDocId=5000
 func (s *Service) OauthTokenByRefresh(r *ReqParams) (resp *OauthTokenResp, err error) {
 	resp = &OauthTokenResp{}
+
+	err = r.CheckKeys([]string{"refresh_token"})
+	if err != nil {
+		return
+	}
+
 	r.AddKeyAndSecret(&s.Config)
 	r.Set("grant_type", "refresh_token")
 	err = PostForm(OAUTH_TOKEN_URL, r, resp)
