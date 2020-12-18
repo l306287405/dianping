@@ -15,6 +15,10 @@ const (
 	OPENAPI_ROUTER = "https://openapi.dianping.com/router"
 )
 
+const (
+	SUCCESS = 200
+)
+
 //配置
 type Config struct {
 	AppKey     string

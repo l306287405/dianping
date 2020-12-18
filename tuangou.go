@@ -1,5 +1,11 @@
 package dianping
 
+type ReceiptPrepareRespBox struct {
+	Code int                `json:"code"`
+	Msg  string             `json:"msg"`
+	Data ReceiptPrepareResp `json:"data"`
+}
+
 type ReceiptPrepareResp struct {
 	ReceiptValidateResultDTOWithEndDate
 	Count          int                                            `json:"count"`                      //可验证的张数
@@ -33,7 +39,7 @@ type ReceiptValidateResultDTO struct {
 
 //输码验券校验接口
 //http://open.dianping.com/document/v2?docId=6000176&rootDocId=5000
-func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareResp, err error) {
+func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareRespBox, err error) {
 	var (
 		u = OPENAPI_ROUTER + "/tuangou/receipt/prepare"
 	)
@@ -46,7 +52,7 @@ func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareResp, err er
 	if err != nil {
 		return
 	}
-	resp = &ReceiptPrepareResp{}
+	resp = &ReceiptPrepareRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
 	err = PostForm(u, r, resp)
@@ -54,9 +60,9 @@ func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareResp, err er
 }
 
 type ReceiptScanprepareRespBox struct {
-	Code int                  `json:"code"`
-	Msg  *string              `json:"msg,omitempty"`
-	Data []ReceiptPrepareResp `json:"data"`
+	Code int                   `json:"code"`
+	Msg  string                `json:"msg"`
+	Data []*ReceiptPrepareResp `json:"data"`
 }
 
 type ReceiptScanprepareResp struct {
@@ -100,9 +106,15 @@ type ReceiptConsumeResp struct {
 	PaymentDetail []*PaymentDetailDTO `json:"payment_detail"` //支付明细
 }
 
+type ReceiptConsumeRespBox struct {
+	Code int                   `json:"code"`
+	Msg  string                `json:"msg"`
+	Data []*ReceiptConsumeResp `json:"data"`
+}
+
 //验券接口
 //http://open.dianping.com/document/v2?docId=6000177&rootDocId=5000
-func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeResp, err error) {
+func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeRespBox, err error) {
 	var (
 		u = OPENAPI_ROUTER + "/tuangou/receipt/consume"
 	)
@@ -115,7 +127,7 @@ func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeResp, err er
 	if err != nil {
 		return
 	}
-	resp = &ReceiptConsumeResp{}
+	resp = &ReceiptConsumeRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
 	err = PostForm(u, r, resp)
@@ -123,9 +135,9 @@ func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeResp, err er
 }
 
 type ReceiptBatchconsumeRespBox struct {
-	Code int                       `json:"code"`
-	Msg  string                    `json:"msg"`
-	Data []ReceiptBatchconsumeResp `json:"data"`
+	Code int                        `json:"code"`
+	Msg  string                     `json:"msg"`
+	Data []*ReceiptBatchconsumeResp `json:"data"`
 }
 
 type ReceiptBatchconsumeResp struct {
@@ -163,6 +175,12 @@ func (s *Service) ReceiptBatchconsume(r *ReqParams) (resp *ReceiptBatchconsumeRe
 	return
 }
 
+type ReceiptReverseconsumeRespBox struct {
+	Code int                          `json:"code"`
+	Msg  string                       `json:"msg"`
+	Data []*ReceiptReverseconsumeResp `json:"data"`
+}
+
 type ReceiptReverseconsumeResp struct {
 	ReceiptCode     string   `json:"receipt_code"`             //验证券码
 	DealId          *int64   `json:"deal_id,omitempty"`        //套餐id
@@ -177,7 +195,7 @@ type ReceiptReverseconsumeResp struct {
 
 //撤销验券接口
 //http://open.dianping.com/document/v2?docId=6000180&rootDocId=5000
-func (s *Service) ReceiptReverseconsume(r *ReqParams) (resp *ReceiptReverseconsumeResp, err error) {
+func (s *Service) ReceiptReverseconsume(r *ReqParams) (resp *ReceiptReverseconsumeRespBox, err error) {
 	var (
 		u = OPENAPI_ROUTER + "/tuangou/receipt/reverseconsume"
 	)
@@ -190,11 +208,17 @@ func (s *Service) ReceiptReverseconsume(r *ReqParams) (resp *ReceiptReverseconsu
 	if err != nil {
 		return
 	}
-	resp = &ReceiptReverseconsumeResp{}
+	resp = &ReceiptReverseconsumeRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
 	err = PostForm(u, r, resp)
 	return
+}
+
+type ReceiptGetconsumedRespBox struct {
+	Code int                    `json:"code"`
+	Msg  string                 `json:"msg"`
+	Data ReceiptGetconsumedResp `json:"data"`
 }
 
 type OrderShopPromoDetails struct {
@@ -214,7 +238,7 @@ type ReceiptGetconsumedResp struct {
 
 //查询已验券信息接口
 //http://open.dianping.com/document/v2?docId=6000178&rootDocId=5000
-func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedResp, err error) {
+func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedRespBox, err error) {
 	var (
 		u = OPENAPI_ROUTER + "/tuangou/receipt/getconsumed"
 	)
@@ -227,16 +251,22 @@ func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedResp
 	if err != nil {
 		return
 	}
-	resp = &ReceiptGetconsumedResp{}
+	resp = &ReceiptGetconsumedRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
 	err = PostForm(u, r, resp)
 	return
 }
 
+type ReceiptQuerylistbydateRespBox struct {
+	Code int                        `json:"code"`
+	Msg  string                     `json:"msg"`
+	Data ReceiptQuerylistbydateResp `json:"data"`
+}
+
 type ReceiptQuerylistbydateResp struct {
-	TotalCount string                   `json:"total_count"` //总数
-	Records    []ReceiptGetconsumedResp `json:"records"`     //记录列表
+	TotalCount string                    `json:"total_count"` //总数
+	Records    []*ReceiptGetconsumedResp `json:"records"`     //记录列表
 }
 
 type ReceiptQuerylistBydateRespRecords struct {
@@ -248,7 +278,7 @@ type ReceiptQuerylistBydateRespRecords struct {
 
 //验券记录
 //http://open.dianping.com/document/v2?docId=6000179&rootDocId=5000
-func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistbydateResp, err error) {
+func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistbydateRespBox, err error) {
 	var (
 		u = OPENAPI_ROUTER + "/tuangou/receipt/querylistbydate"
 	)
@@ -261,7 +291,7 @@ func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistby
 	if err != nil {
 		return
 	}
-	resp = &ReceiptQuerylistbydateResp{}
+	resp = &ReceiptQuerylistbydateRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
 	err = PostForm(u, r, resp)
