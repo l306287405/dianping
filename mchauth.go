@@ -30,7 +30,7 @@ type OauthTokenResp struct {
 	Bid                string  `json:"bid"`                  //客户id
 	TokenType          *string `json:"token_type,omitempty"` //bearer
 	Code               int     `json:"code"`
-	Msg                *string `json:"msg,omitempty"`
+	Msg                string  `json:"msg,omitempty"`
 }
 
 //session换取接口
@@ -73,7 +73,7 @@ func (s *Service) OauthTokenByRefresh(r *ReqParams) (resp *OauthTokenResp, err e
 
 type OauthSessionQueryResp struct {
 	Code int    `json:"code"`
-	Msg  string `json:"msg"`
+	Msg  string `json:"msg,omitempty"`
 	Data struct {
 		Bid   string `json:"bid"`
 		Scope string `json:"scope"`
@@ -101,7 +101,7 @@ func (s *Service) OauthSessionQuery(r *ReqParams) (resp *OauthSessionQueryResp, 
 
 type OauthSessionScopeRespBox struct {
 	Code int                      `json:"code"`
-	Msg  string                   `json:"msg"`
+	Msg  string                   `json:"msg,omitempty"`
 	Data []*OauthSessionScopeResp `json:"data"`
 }
 
@@ -134,7 +134,7 @@ func (s *Service) OauthSessionScope(r *ReqParams) (resp *OauthSessionScopeRespBo
 
 type OauthSessionShopidmappingRespBox struct {
 	Code int                              `json:"code"`
-	Msg  string                           `json:"msg"`
+	Msg  string                           `json:"msg,omitempty"`
 	Data []*OauthSessionShopidmappingResp `json:"data"`
 }
 
