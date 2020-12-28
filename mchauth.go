@@ -22,6 +22,7 @@ func (s *Service) MerchantAuth(r *ReqParams) string {
 }
 
 type OauthTokenResp struct {
+	Resp
 	AccessToken        string  `json:"access_token"`         //session
 	ExpiresIn          int64   `json:"expires_in"`           //过期时间
 	Scope              string  `json:"scope"`                //session的权限范围,对应模块名称
@@ -29,8 +30,6 @@ type OauthTokenResp struct {
 	RemainRefreshCount int     `json:"remain_refresh_count"` //剩余刷新次数
 	Bid                string  `json:"bid"`                  //客户id
 	TokenType          *string `json:"token_type,omitempty"` //bearer
-	Code               int     `json:"code"`
-	Msg                string  `json:"msg,omitempty"`
 }
 
 //session换取接口
