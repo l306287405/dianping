@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	OPENAPI_URL    = "https://openapi.dianping.com/"
+	OPENAPI_URL    = "https://openapi.dianping.com"
 	OPENAPI_ROUTER = "https://openapi.dianping.com/router"
 )
 
@@ -119,7 +119,7 @@ func (s *ReqParams) AddPublicParams(cfg *Config) {
 	s.Set("sign_method", "MD5")
 }
 
-func (s *ReqParams) CheckKeys(keys []string) error {
+func (s *ReqParams) CheckKeys(keys ...string) error {
 	for _, key := range keys {
 		if s.Get(key) == "" {
 			return errors.New("参数缺失:" + key)
@@ -128,7 +128,7 @@ func (s *ReqParams) CheckKeys(keys []string) error {
 	return nil
 }
 
-func (s *ReqParams) ChooseOne(keys []string) error {
+func (s *ReqParams) ChooseOne(keys ...string) error {
 	for _, key := range keys {
 		if s.Get(key) != "" {
 			return nil

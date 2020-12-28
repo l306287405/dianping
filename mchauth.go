@@ -38,7 +38,7 @@ type OauthTokenResp struct {
 func (s *Service) OauthTokenByCode(r *ReqParams) (resp *OauthTokenResp, err error) {
 	resp = &OauthTokenResp{}
 
-	err = r.CheckKeys([]string{"auth_code"})
+	err = r.CheckKeys("auth_code")
 	if err != nil {
 		return
 	}
@@ -57,7 +57,7 @@ func (s *Service) OauthTokenByCode(r *ReqParams) (resp *OauthTokenResp, err erro
 func (s *Service) OauthTokenByRefresh(r *ReqParams) (resp *OauthTokenResp, err error) {
 	resp = &OauthTokenResp{}
 
-	err = r.CheckKeys([]string{"refresh_token"})
+	err = r.CheckKeys("refresh_token")
 	if err != nil {
 		return
 	}
@@ -87,7 +87,7 @@ func (s *Service) OauthSessionQuery(r *ReqParams) (resp *OauthSessionQueryResp, 
 		u = OPENAPI_ROUTER + "/oauth/session/query"
 	)
 
-	err = r.CheckKeys([]string{"session"})
+	err = r.CheckKeys("session")
 	if err != nil {
 		return
 	}
@@ -120,7 +120,7 @@ func (s *Service) OauthSessionScope(r *ReqParams) (resp *OauthSessionScopeRespBo
 		u = OPENAPI_ROUTER + "/oauth/session/scope"
 	)
 
-	err = r.CheckKeys([]string{"session", "bid"})
+	err = r.CheckKeys("session", "bid")
 	if err != nil {
 		return
 	}
@@ -151,7 +151,7 @@ func (s *Service) OauthSessionShopidmapping(r *ReqParams) (resp *OauthSessionSho
 		u = OPENAPI_ROUTER + "/oauth/session/shopidmapping"
 	)
 
-	err = r.CheckKeys([]string{"session", "bid", "shopids"})
+	err = r.CheckKeys("session", "bid", "shopids")
 	if err != nil {
 		return
 	}

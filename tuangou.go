@@ -44,11 +44,11 @@ func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareRespBox, err
 		u = OPENAPI_ROUTER + "/tuangou/receipt/prepare"
 	)
 
-	err = r.CheckKeys([]string{"session", "receipt_code"})
+	err = r.CheckKeys("session", "receipt_code")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -84,11 +84,11 @@ func (s *Service) ReceiptScanprepare(r *ReqParams) (resp *ReceiptScanprepareResp
 		u = OPENAPI_ROUTER + "/tuangou/receipt/scanprepare"
 	)
 
-	err = r.CheckKeys([]string{"session", "qr_code"})
+	err = r.CheckKeys("session", "qr_code")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -119,11 +119,11 @@ func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeRespBox, err
 		u = OPENAPI_ROUTER + "/tuangou/receipt/consume"
 	)
 
-	err = r.CheckKeys([]string{"session", "requestid", "receipt_code", "count", "app_shop_account", "app_shop_accountname"})
+	err = r.CheckKeys("session", "requestid", "receipt_code", "count", "app_shop_account", "app_shop_accountname")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -160,11 +160,11 @@ func (s *Service) ReceiptBatchconsume(r *ReqParams) (resp *ReceiptBatchconsumeRe
 		u = OPENAPI_ROUTER + "/tuangou/receipt/batchconsume"
 	)
 
-	err = r.CheckKeys([]string{"session", "requestid", "app_shop_account", "app_shop_accountname", "receipt_code_infos"})
+	err = r.CheckKeys("session", "requestid", "app_shop_account", "app_shop_accountname", "receipt_code_infos")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -200,11 +200,11 @@ func (s *Service) ReceiptReverseconsume(r *ReqParams) (resp *ReceiptReverseconsu
 		u = OPENAPI_ROUTER + "/tuangou/receipt/reverseconsume"
 	)
 
-	err = r.CheckKeys([]string{"session", "app_deal_id", "receipt_code", "app_shop_account", "app_shop_accountname"})
+	err = r.CheckKeys("session", "app_deal_id", "receipt_code", "app_shop_account", "app_shop_accountname")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -243,11 +243,11 @@ func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedResp
 		u = OPENAPI_ROUTER + "/tuangou/receipt/getconsumed"
 	)
 
-	err = r.CheckKeys([]string{"session", "receipt_code"})
+	err = r.CheckKeys("session", "receipt_code")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -283,11 +283,11 @@ func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistby
 		u = OPENAPI_ROUTER + "/tuangou/receipt/querylistbydate"
 	)
 
-	err = r.CheckKeys([]string{"session", "date", "offset", "limit"})
+	err = r.CheckKeys("session", "date", "offset", "limit")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -324,11 +324,11 @@ func (s *Service) DealQueryshopdeal(r *ReqParams) (resp *DealQueryshopdealRespBo
 		u = OPENAPI_ROUTER + "/tuangou/deal/queryshopdeal"
 	)
 
-	err = r.CheckKeys([]string{"session", "date"})
+	err = r.CheckKeys("session")
 	if err != nil {
 		return
 	}
-	err = r.ChooseOne([]string{"app_shop_id", "open_shop_uuid"})
+	err = r.ChooseOne("app_shop_id", "open_shop_uuid")
 	if err != nil {
 		return
 	}
@@ -356,7 +356,7 @@ func (s *Service) ReceiptQuerybymobile(r *ReqParams) (resp *ReceiptQuerybymobile
 		u = OPENAPI_ROUTER + "/tuangou/receipt/querybymobile"
 	)
 
-	err = r.CheckKeys([]string{"session", "mobile", "deal_group_id", "deal_id", "offset", "limit", "open_shop_uuid", "platform"})
+	err = r.CheckKeys("session", "mobile", "deal_group_id", "deal_id", "offset", "limit", "open_shop_uuid", "platform")
 	if err != nil {
 		return
 	}
