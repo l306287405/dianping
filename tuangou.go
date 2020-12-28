@@ -40,7 +40,7 @@ type ReceiptValidateResultDTO struct {
 //http://open.dianping.com/document/v2?docId=6000176&rootDocId=5000
 func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/prepare"
+		u = OPENAPI_URL + "/tuangou/receipt/prepare"
 	)
 
 	err = r.CheckKeys("session", "receipt_code")
@@ -79,7 +79,7 @@ type ReceiptScanprepareResp struct {
 //http://open.dianping.com/document/v2?docId=6000181&rootDocId=5000
 func (s *Service) ReceiptScanprepare(r *ReqParams) (resp *ReceiptScanprepareRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/scanprepare"
+		u = OPENAPI_URL + "/tuangou/receipt/scanprepare"
 	)
 
 	err = r.CheckKeys("session", "qr_code")
@@ -113,7 +113,7 @@ type ReceiptConsumeRespBox struct {
 //http://open.dianping.com/document/v2?docId=6000177&rootDocId=5000
 func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/consume"
+		u = OPENAPI_URL + "/tuangou/receipt/consume"
 	)
 
 	err = r.CheckKeys("session", "requestid", "receipt_code", "count", "app_shop_account", "app_shop_accountname")
@@ -153,7 +153,7 @@ type ConsumeDetailList struct {
 //http://open.dianping.com/document/v2?docId=6000521&rootDocId=5000
 func (s *Service) ReceiptBatchconsume(r *ReqParams) (resp *ReceiptBatchconsumeRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/batchconsume"
+		u = OPENAPI_URL + "/tuangou/receipt/batchconsume"
 	)
 
 	err = r.CheckKeys("session", "requestid", "app_shop_account", "app_shop_accountname", "receipt_code_infos")
@@ -192,7 +192,7 @@ type ReceiptReverseconsumeResp struct {
 //http://open.dianping.com/document/v2?docId=6000180&rootDocId=5000
 func (s *Service) ReceiptReverseconsume(r *ReqParams) (resp *ReceiptReverseconsumeRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/reverseconsume"
+		u = OPENAPI_URL + "/tuangou/receipt/reverseconsume"
 	)
 
 	err = r.CheckKeys("session", "app_deal_id", "receipt_code", "app_shop_account", "app_shop_accountname")
@@ -234,7 +234,7 @@ type ReceiptGetconsumedResp struct {
 //http://open.dianping.com/document/v2?docId=6000178&rootDocId=5000
 func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/getconsumed"
+		u = OPENAPI_URL + "/tuangou/receipt/getconsumed"
 	)
 
 	err = r.CheckKeys("session", "receipt_code")
@@ -273,7 +273,7 @@ type ReceiptQuerylistBydateRespRecords struct {
 //http://open.dianping.com/document/v2?docId=6000179&rootDocId=5000
 func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistbydateRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/querylistbydate"
+		u = OPENAPI_URL + "/tuangou/receipt/querylistbydate"
 	)
 
 	err = r.CheckKeys("session", "date", "offset", "limit")
@@ -313,7 +313,7 @@ type DealQueryshopdealResp struct {
 //http://open.dianping.com/document/v2?docId=6000182&rootDocId=5000
 func (s *Service) DealQueryshopdeal(r *ReqParams) (resp *DealQueryshopdealRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/deal/queryshopdeal"
+		u = OPENAPI_URL + "/tuangou/deal/queryshopdeal"
 	)
 
 	err = r.CheckKeys("session")
@@ -344,7 +344,7 @@ type ReceiptQuerybymobileResp struct {
 //http://open.dianping.com/document/v2?docId=6000682&rootDocId=5000
 func (s *Service) ReceiptQuerybymobile(r *ReqParams) (resp *ReceiptQuerybymobileRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/receipt/querybymobile"
+		u = OPENAPI_URL + "/tuangou/receipt/querybymobile"
 	)
 
 	err = r.CheckKeys("session", "mobile", "deal_group_id", "deal_id", "offset", "limit", "open_shop_uuid", "platform")
