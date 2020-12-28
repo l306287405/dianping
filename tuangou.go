@@ -1,8 +1,7 @@
 package dianping
 
 type ReceiptPrepareRespBox struct {
-	Code int                `json:"code"`
-	Msg  string             `json:"msg,omitempty"`
+	Resp
 	Data ReceiptPrepareResp `json:"data"`
 }
 
@@ -60,8 +59,7 @@ func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareRespBox, err
 }
 
 type ReceiptScanprepareRespBox struct {
-	Code int                   `json:"code"`
-	Msg  string                `json:"msg,omitempty"`
+	Resp
 	Data []*ReceiptPrepareResp `json:"data"`
 }
 
@@ -107,8 +105,7 @@ type ReceiptConsumeResp struct {
 }
 
 type ReceiptConsumeRespBox struct {
-	Code int                   `json:"code"`
-	Msg  string                `json:"msg,omitempty"`
+	Resp
 	Data []*ReceiptConsumeResp `json:"data"`
 }
 
@@ -135,8 +132,7 @@ func (s *Service) ReceiptConsume(r *ReqParams) (resp *ReceiptConsumeRespBox, err
 }
 
 type ReceiptBatchconsumeRespBox struct {
-	Code int                        `json:"code"`
-	Msg  string                     `json:"msg,omitempty"`
+	Resp
 	Data []*ReceiptBatchconsumeResp `json:"data"`
 }
 
@@ -176,8 +172,7 @@ func (s *Service) ReceiptBatchconsume(r *ReqParams) (resp *ReceiptBatchconsumeRe
 }
 
 type ReceiptReverseconsumeRespBox struct {
-	Code int                          `json:"code"`
-	Msg  string                       `json:"msg,omitempty"`
+	Resp
 	Data []*ReceiptReverseconsumeResp `json:"data"`
 }
 
@@ -216,8 +211,7 @@ func (s *Service) ReceiptReverseconsume(r *ReqParams) (resp *ReceiptReverseconsu
 }
 
 type ReceiptGetconsumedRespBox struct {
-	Code int                    `json:"code"`
-	Msg  string                 `json:"msg,omitempty"`
+	Resp
 	Data ReceiptGetconsumedResp `json:"data"`
 }
 
@@ -259,8 +253,7 @@ func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedResp
 }
 
 type ReceiptQuerylistbydateRespBox struct {
-	Code int                        `json:"code"`
-	Msg  string                     `json:"msg,omitempty"`
+	Resp
 	Data ReceiptQuerylistbydateResp `json:"data"`
 }
 
@@ -299,8 +292,7 @@ func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistby
 }
 
 type DealQueryshopdealRespBox struct {
-	Code int                      `json:"code"`
-	Msg  string                   `json:"msg,omitempty"`
+	Resp
 	Data []*DealQueryshopdealResp `json:"data"`
 }
 
@@ -340,8 +332,7 @@ func (s *Service) DealQueryshopdeal(r *ReqParams) (resp *DealQueryshopdealRespBo
 }
 
 type ReceiptQuerybymobileRespBox struct {
-	Code int                         `json:"code"`
-	Msg  string                      `json:"msg,omitempty"`
+	Resp
 	Data []*ReceiptQuerybymobileResp `json:"data"`
 }
 

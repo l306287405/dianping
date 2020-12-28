@@ -72,8 +72,7 @@ func (s *Service) OauthTokenByRefresh(r *ReqParams) (resp *OauthTokenResp, err e
 }
 
 type OauthSessionQueryResp struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg,omitempty"`
+	Resp
 	Data struct {
 		Bid   string `json:"bid"`
 		Scope string `json:"scope"`
@@ -100,8 +99,7 @@ func (s *Service) OauthSessionQuery(r *ReqParams) (resp *OauthSessionQueryResp, 
 }
 
 type OauthSessionScopeRespBox struct {
-	Code int                      `json:"code"`
-	Msg  string                   `json:"msg,omitempty"`
+	Resp
 	Data []*OauthSessionScopeResp `json:"data"`
 }
 
@@ -133,8 +131,7 @@ func (s *Service) OauthSessionScope(r *ReqParams) (resp *OauthSessionScopeRespBo
 }
 
 type OauthSessionShopidmappingRespBox struct {
-	Code int                              `json:"code"`
-	Msg  string                           `json:"msg,omitempty"`
+	Resp
 	Data []*OauthSessionShopidmappingResp `json:"data"`
 }
 

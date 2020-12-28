@@ -137,3 +137,15 @@ func (s *ReqParams) ChooseOne(keys ...string) error {
 	return errors.New("以下参数必选其一: " + strings.Join(keys, ", "))
 
 }
+
+type Resp struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+func (s *Resp) Error() error {
+	if s.Code == SUCCESS {
+		return nil
+	}
+	return errors.New(s.Msg)
+}
