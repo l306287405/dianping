@@ -8,15 +8,15 @@ import (
 	"time"
 )
 
-func PostForm(url string, R *ReqParams, resp interface{}) error {
-	r, err := http.PostForm(url, R.Values)
+func PostForm(url string, req *ReqParams, resp interface{}) error {
+	r, err := http.PostForm(url, req.Values)
 	if err != nil {
 		return err
 	}
 	defer r.Body.Close()
 
 	if r.StatusCode != http.StatusOK {
-		return errors.New("点评请求http状态非200:" + r.Status)
+		return errors.New("点评请求http状态非200:" + r.Status + " url:" + url + " values:" + req.Encode())
 	}
 
 	return json.NewDecoder(r.Body).Decode(resp)
