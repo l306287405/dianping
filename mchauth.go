@@ -93,7 +93,7 @@ func (s *Service) OauthSessionQuery(r *ReqParams) (resp *OauthSessionQueryResp, 
 	resp = &OauthSessionQueryResp{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }
 
@@ -125,7 +125,7 @@ func (s *Service) OauthSessionScope(r *ReqParams) (resp *OauthSessionScopeRespBo
 	resp = &OauthSessionScopeRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }
 
@@ -155,6 +155,6 @@ func (s *Service) OauthSessionShopidmapping(r *ReqParams) (resp *OauthSessionSho
 	resp = &OauthSessionShopidmappingRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }

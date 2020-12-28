@@ -5,6 +5,7 @@ import (
 	"errors"
 	"math/rand"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -20,6 +21,22 @@ func PostForm(url string, req *ReqParams, resp interface{}) error {
 	}
 
 	return json.NewDecoder(r.Body).Decode(resp)
+}
+
+func GetRequest(url string, req *ReqParams, response interface{}) error {
+	if !strings.HasSuffix(url, "?") {
+		url += "?"
+	}
+	r, err := http.Get(url + req.Encode())
+	if err != nil {
+		return err
+	}
+	defer r.Body.Close()
+
+	if r.StatusCode != http.StatusOK {
+		return errors.New("点评请求http状态非200:" + r.Status + " url:" + url + " values:" + req.Encode())
+	}
+	return json.NewDecoder(r.Body).Decode(response)
 }
 
 func RandStr(len int) string {

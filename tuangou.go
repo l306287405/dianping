@@ -248,7 +248,7 @@ func (s *Service) ReceiptGetconsumed(r *ReqParams) (resp *ReceiptGetconsumedResp
 	resp = &ReceiptGetconsumedRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }
 
@@ -287,7 +287,7 @@ func (s *Service) ReceiptQuerylistbydate(r *ReqParams) (resp *ReceiptQuerylistby
 	resp = &ReceiptQuerylistbydateRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }
 
@@ -327,7 +327,7 @@ func (s *Service) DealQueryshopdeal(r *ReqParams) (resp *DealQueryshopdealRespBo
 	resp = &DealQueryshopdealRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }
 
@@ -355,6 +355,6 @@ func (s *Service) ReceiptQuerybymobile(r *ReqParams) (resp *ReceiptQuerybymobile
 	resp = &ReceiptQuerybymobileRespBox{}
 	r.AddPublicParams(&s.Config)
 	r.Sign(s.Secret)
-	err = PostForm(u, r, resp)
+	err = GetRequest(u, r, resp)
 	return
 }
