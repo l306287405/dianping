@@ -16,7 +16,7 @@ const (
 )
 
 const (
-	SUCCESS = "200"
+	SUCCESS = 200
 )
 
 //配置
@@ -139,7 +139,7 @@ func (s *ReqParams) ChooseOne(keys ...string) error {
 }
 
 type Resp struct {
-	Code string `json:"code"`
+	Code int    `json:"code"`
 	Msg  string `json:"msg,omitempty"`
 }
 
