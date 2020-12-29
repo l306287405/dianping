@@ -13,9 +13,9 @@ type ReceiptPrepareResp struct {
 }
 
 type PaymentDetailDTO struct {
-	PaymentDetailId string `json:"payment_detail_id"` //支付详情id
-	Amount          string `json:"amount"`            //支付金额
-	AmountType      int64  `json:"amount_type"`       //金额类型
+	PaymentDetailId string  `json:"payment_detail_id"` //支付详情id
+	Amount          float64 `json:"amount"`            //支付金额
+	AmountType      int64   `json:"amount_type"`       //金额类型
 }
 
 type ReceiptValidateResultDTOWithEndDate struct {
@@ -216,7 +216,7 @@ type ReceiptGetconsumedRespBox struct {
 }
 
 type OrderShopPromoDetails struct {
-	PromoAmount string  `json:"promo_amount"`   //优惠金额
+	PromoAmount float64 `json:"promo_amount"`   //优惠金额
 	PromoType   int     `json:"promo_type"`     //优惠类型 1-抵用券 2-立减
 	Desc        *string `json:"desc,omitempty"` //说明信息
 }
