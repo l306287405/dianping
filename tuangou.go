@@ -362,7 +362,7 @@ type ServiceSku struct {
 //http://open.dianping.com/document/v2?docId=6000675&rootDocId=5000
 func (s *Service) ProductQueryproductbytype(r *ReqParams) (resp *ProductQueryproductbytypeRespBox, err error) {
 	var (
-		u = OPENAPI_ROUTER + "/tuangou/deal/queryproductbytype"
+		u = OPENAPI_ROUTER + "/tuangou/product/queryproductbytype"
 	)
 
 	err = r.CheckKeys("session", "type")
