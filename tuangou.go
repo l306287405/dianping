@@ -23,17 +23,21 @@ type ReceiptValidateResultDTOWithEndDate struct {
 	ReceiptEndDate int64 `json:"receiptEndDate"` //卷过期时间
 }
 
+type ReceiptResultDTO struct {
+	ReceiptCode   string   `json:"receipt_code"`              //验证券码
+	DealId        *int64   `json:"deal_id,omitempty"`         //套餐id
+	DealgroupId   *int64   `json:"dealgroup_id,omitempty"`    //团购id
+	ProductItemId *int64   `json:"product_item_id,omitempty"` //商品id
+	ProductType   *int     `json:"product_type,omitempty"`    //商品类型
+	DealTitle     string   `json:"deal_title"`                //商品名称
+	DealPrice     *float64 `json:"deal_price,omitempty"`      //商品售卖价格
+	BizType       int      `json:"biz_type"`                  //业务类型
+}
+
 type ReceiptValidateResultDTO struct {
-	ReceiptCode     string   `json:"receipt_code"`              //验证券码
-	DealId          *int64   `json:"deal_id,omitempty"`         //套餐id
-	DealgroupId     *int64   `json:"dealgroup_id,omitempty"`    //团购id
-	ProductItemId   *int64   `json:"product_item_id,omitempty"` //商品id
-	ProductType     *int     `json:"product_type,omitempty"`    //商品类型
-	DealTitle       string   `json:"deal_title"`                //商品名称
-	DealPrice       *float64 `json:"deal_price,omitempty"`      //商品售卖价格
-	DealMarketprice *float64 `json:"deal_marketprice"`          //商品市场价格
-	BizType         int      `json:"biz_type"`                  //业务类型
-	Mobile          *string  `json:"mobile,omitempty"`          //用户手机号
+	ReceiptResultDTO
+	DealMarketprice *float64 `json:"deal_marketprice"` //商品市场价格
+	Mobile          *string  `json:"mobile,omitempty"` //用户手机号
 }
 
 //输码验券校验接口
@@ -60,19 +64,12 @@ func (s *Service) ReceiptPrepare(r *ReqParams) (resp *ReceiptPrepareRespBox, err
 
 type ReceiptScanprepareRespBox struct {
 	Resp
-	Data []*ReceiptPrepareResp `json:"data"`
+	Data []*ReceiptScanprepareResp `json:"data"`
 }
 
 type ReceiptScanprepareResp struct {
-	AvailableCount int      `json:"available_count"`           //可用券数量
-	ReceiptCode    string   `json:"receipt_code"`              //其中一张券号
-	DealId         *int64   `json:"deal_id,omitempty"`         //套餐id
-	DealgroupId    *int64   `json:"dealgroup_id,omitempty"`    //团购id
-	DealTitle      string   `json:"deal_title"`                //商品名称
-	DealPrice      *float64 `json:"deal_price,omitempty"`      //商品售卖价格
-	ProductItemId  *int64   `json:"product_item_id,omitempty"` //商品id
-	BizType        int      `json:"biz_type"`                  //业务类型
-	ProductType    *int     `json:"product_type,omitempty"`    //商品类型
+	ReceiptResultDTO
+	AvailableCount int `json:"available_count"` //可用券数量
 }
 
 //扫码验券校验接口
