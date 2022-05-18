@@ -7,9 +7,9 @@ type ReceiptPrepareRespBox struct {
 
 type ReceiptPrepareResp struct {
 	ReceiptValidateResultDTOWithEndDate
-	Count          int                                            `json:"count"`                      //可验证的张数
-	PaymentDetail  []*PaymentDetailDTO                            `json:"payment_detail"`             //支付明细
-	ReceiptInfoMap map[int64]*ReceiptValidateResultDTOWithEndDate `json:"receipt_info_map,omitempty"` //多团单维度卷信息,如果为null则为单团单,key为product_item_id
+	Count          int                                              `json:"count"`                      //可验证的张数
+	PaymentDetail  []*PaymentDetailDTO                              `json:"payment_detail"`             //支付明细
+	ReceiptInfoMap map[int64][]*ReceiptValidateResultDTOWithEndDate `json:"receipt_info_map,omitempty"` //多团单维度卷信息,如果为null则为单团单,key为product_item_id
 }
 
 type PaymentDetailDTO struct {
@@ -20,7 +20,7 @@ type PaymentDetailDTO struct {
 
 type ReceiptValidateResultDTOWithEndDate struct {
 	ReceiptValidateResultDTO
-	ReceiptEndDate string `json:"receipt_end_date"` //卷过期时间
+	ReceiptEndDate int64 `json:"receiptEndDate"` //卷过期时间
 }
 
 type ReceiptValidateResultDTO struct {
